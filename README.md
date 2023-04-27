@@ -25,3 +25,5 @@ The purpose of this is to collect all the necessary data from the StackShare API
 The purpose of this is to be the presentation of everything I did during the project. Both of these above notebooks are combined into a single one, with some changes made to make the presentation flow better.
 
 
+## Future Improvements:
+I would web scrape for the companies that do not have any information, or I would use another tech-based API such as Hunter.io to supplement my data.
