@@ -88,6 +88,36 @@ ORDER BY company_count DESC
 LIMIT 5;
 
 
+/*
+ * This query provides a list of companies with the number of tools they are using and all of the
+ * company's relevant information in a view
+ */
+CREATE VIEW company_tool_count AS
+SELECT 
+    c.company_id,
+    c.company_name,
+    c.company_domain,
+    c.company_size,
+    c.company_revenue,
+    COUNT(t.tool_id) AS tool_count
+FROM Companies c
+JOIN Company_Tool ct ON c.company_id = ct.company_id
+JOIN Tools t ON ct.tool_id = t.tool_id
+GROUP BY 
+    c.company_id,
+    c.company_name,
+    c.company_domain,
+    c.company_size,
+    c.company_revenue;
+
+SELECT *
+FROM company_tool_count
+ORDER BY tool_count DESC;
+
+
+
+
+
 
 
 
@@ -122,7 +152,7 @@ LIMIT 5;
  * since the tool is only used by a single company
  */
 WITH average_tools AS (
-	SELECT ct.company_id,
+	SELECT
 		company_name,
 		tool_name,
 		COUNT(ct.tool_id) AS tool_count
@@ -137,7 +167,7 @@ WITH average_tools AS (
 )
 SELECT *
 FROM average_tools
-ORDER BY company_id;
+ORDER BY company_name;
 
 
 #Third query
